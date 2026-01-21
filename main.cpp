@@ -74,5 +74,39 @@ int main()
     return res;
   }
 
+  const Book ** same_author(size_t& out, const Lib & db, const Book* const* match, size_t b)
+  {
+    out = 0;
+    const Book ** res = nullptr;
+    for (size_t i = 0; i < db.books; i++)
+    {
+      for (size_t j = 0; j < b; j++)
+      {
+        if (db.lib[i]->author == match[j]->author)
+        {
+          out++;
+          break;
+        }
+      }
+    }
+    if (out == 0)
+    {
+      return res;
+    }
+    res = new const Book *[out];
+    size_t index = 0;
+    for (size_t i = 0; i < db.books; i++)
+    {
+      for (size_t j = 0; j < b; j++)
+      {
+        if (db.lib[i]->author == match[j]->author)
+        {
+          res[index++] = db.lib[i];
+          break;
+        }
+      }
+    }
+    return res;
+  }
 }
 
