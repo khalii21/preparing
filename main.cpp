@@ -149,5 +149,43 @@ int main()
     }
     return res;
   }
+
+  size_t space_after_out(const Lib & db, const Book* book)
+  {
+    size_t res = 0;
+    for (size_t i = 0; i < db.books; i++)
+    {
+      if (book->author == db.lib[i]->author)
+      {
+        res += db.stocks[i];
+      }
+    }
+    return res;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
