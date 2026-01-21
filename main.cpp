@@ -1,3 +1,5 @@
+#include <iostream>
+
 int main()
 {
   struct Book
@@ -163,29 +165,57 @@ int main()
     return res;
   }
 
+  size_t space_after_out(const Lib * libs, size_t l, const Book* book)
+  {
+    size_t res = 0;
+    for (size_t i = 0; i < l; i++)
+    {
+      for (size_t j = 0; j < libs[i].books; j++)
+      {
+        if (book->author == libs[i].lib[j]->author)
+        {
+          res += libs[i].stocks[j];
+        }
+      }
+    }
+    return res;
+  }
 
+  size_t space_after_out(const Lib & db, const Book* const* match, size_t b)
+  {
+    size_t res = 0;
+    for (size_t i = 0; i < db.books; i++)
+    {
+      for (size_t j = 0; j < b; j++)
+      {
+        if (db.lib[i]->author == match[j]->author)
+        {
+          res += db.stocks[i];
+          break;
+        }
+      }
+    }
+    return res;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  size_t space_after_out(const Lib * libs, size_t l, const Book* const* match, size_t b)
+  {
+    size_t res = 0;
+    for (size_t i = 0; i < l; i++)
+    {
+      for (size_t j = 0; j < libs[i].books; j++)
+      {
+        for (size_t k = 0; k < b; k++)
+        {
+          if (libs[i].lib[j]->author == match[k]->author)
+          {
+            res += libs[i].stocks[j];
+            break;
+          }
+        }
+      }
+    }
+    return res;
+  }
 }
 
