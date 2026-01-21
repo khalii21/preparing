@@ -108,5 +108,46 @@ int main()
     }
     return res;
   }
+
+  const Book ** same_author(size_t& out, const Lib * libs, size_t l, const Book* const* match, size_t b)
+  {
+    out = 0;
+    const Book ** res = nullptr;
+    for (size_t i = 0; i < l; i++)
+    {
+      for (size_t j = 0; j < libs[i].books; j++)
+      {
+        for (size_t k = 0; k < b; k++)
+        {
+          if (libs[i].lib[j]->author == match[k]->author)
+          {
+            out++;
+            break;
+          }
+        }
+      }
+    }
+    if (out == 0)
+    {
+      return res;
+    }
+    res = new const Book *[out];
+    size_t index = 0;
+    for (size_t i = 0; i < l; i++)
+    {
+      for (size_t j = 0; j < libs[i].books; j++)
+      {
+        for (size_t k = 0; k < b; k++)
+        {
+          if (libs[i].lib[j]->author == match[k]->author)
+          {
+            res[index++] = libs[i].lib[j];
+            break;
+          }
+        }
+      }
+    }
+    return res;
+  }
 }
 
