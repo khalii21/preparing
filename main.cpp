@@ -217,5 +217,36 @@ int main()
     }
     return res;
   }
+
+  size_t out_list(const Book *** to_out, const size_t ** out_each, const Lib & db, const Book* book)
+  {
+    size_t res = 0;
+    *to_out = nullptr;
+    *out_each = nullptr;
+    for (size_t i = 0; i < db.books; i++)
+    {
+      if (db.lib[i]->author == book->author)
+      {
+        res++;
+      }
+    }
+    if (res == 0)
+    {
+      return res;
+    }
+    *to_out = new const Book *[res];
+    *out_each = new size_t [res];
+    size_t index = 0;
+    for (size_t i = 0; i < db.books; i++)
+    {
+      if (db.lib[i]->author == book->author)
+      {
+        (*to_out)[index] = db.lib[i];
+        (*out_each)[index] = db.stocks[i];
+        index++;
+      }
+    }
+    return res;
+  }
 }
 
